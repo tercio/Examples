@@ -1,0 +1,29 @@
+#
+#  LEMBRAR ! ! ! ! ! ! ! ! ! ! ! ! ! ! !! ! ! 
+#  coloque o :set noexpandtab para que a tab nao se
+#  transforme em espaco e tenha um erro na execucao
+#  dos comandos
+#
+
+VPATH = src lib
+
+LIBSRC= liba.c libb.c
+LIBOBJ= $(LIBSRC:.c=.o)
+
+
+APPSRC= main.c app.c
+APPOBJ= $(APPSRC:.c=.o)
+
+CFLAGS=
+
+all:    libt2m.a app
+
+%.o:%.c
+	$(CC)	-c $(CFLAGS) -o $@ $<
+
+libt2m.a: $(LIBOBJ)
+	$(AR)	cru libt2m.a $(LIBOBJ)
+
+app: $(APPOBJ) libt2m.a
+	$(CC) -o app $(APPOBJ) -lt2m -L.
+
