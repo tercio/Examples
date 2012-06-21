@@ -1,0 +1,30 @@
+sudo apt-get autoconf-archive
+
+Baixar os dois pacotes de:  http://packages.ubuntu.com/oneiric/libgoogle-glog0
+http://packages.ubuntu.com/oneiric/libunwind7
+libgoogle-glog-dev_0.3.1-1ubuntu1_amd64.deb
+
+tercio@ubuntu:/usr/lib$ sudo ln -s libglog.so.0 libglog.so
+
+Download: http://code.google.com/p/double-conversion/
+
+libgoogle-glog0_0.3.1-1ubuntu1_amd64.deb
+libgoogle-glog-dev_0.3.1-1ubuntu1_amd64.deb
+libunwind7_0.99-0.2ubuntu1_amd64.deb 
+
+aclocal
+automake --add-missing
+autoconf
+
+(tive que rodar o automake --add-missing e autoreconf)
+
+no diretorio raiz do double-conversion:
+cp ../tercio/folly/folly/SConstruct.double-conversion .
+scons -f SConstruct.double-conversion
+
+
+LDFLAGS=-L/home/tercio/projects/double-conversion/ CPPFLAGS=-I/home/tercio/projects/double-conversion/src/ ./configure
+
+
+
+
