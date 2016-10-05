@@ -23,6 +23,7 @@
 #include <boost/archive/tmpdir.hpp>
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
+#include <boost/serialization/vector.hpp>
 
 using namespace std;
 
@@ -67,7 +68,7 @@ private:
 int main () {
 
     {
-	IRPF ir ("2012","Itau","3750","Em processamento");
+	IRPF ir ("2012","Itau","5555","Em processamento");
 
 	ofstream ofs ("/tmp/irpf.xml");
 
@@ -97,6 +98,30 @@ int main () {
 	cout << "Situacao : " << ir.getSituacao()<<endl;
 
     }
+
+
+    {
+	IRPF ir2010 ("2010","Bradesco","1234","Depositado em Maio");
+	IRPF ir2011 ("2011","Itau","4321","Depositado em Julho");
+	IRPF ir2012 ("2012","Itau","5555","Em processamento");
+
+	vector <IRPF> exercicios;
+	exercicios.push_back(ir2010);
+	exercicios.push_back(ir2011);
+	exercicios.push_back(ir2012);
+
+	ofstream ofs ("/tmp/irpf2.xml");
+
+	boost::archive::xml_oarchive oa (ofs);
+
+	cout << "\n\nSalvando dados no xml..." << endl;
+	oa << BOOST_SERIALIZATION_NVP(exercicios);
+	
+	cout << "Arquivo gerado... De um cat /tmp/irpf2.xml para visualizar." << endl;
+
+    }
+
+
     
     return 0;
 }

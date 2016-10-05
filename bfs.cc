@@ -89,7 +89,7 @@ int main () {
     vector<int>::iterator it;
 
     // Coloque aqui o node que deseja iniciar a pesquisa
-    int start_vertex = 0;
+    int start_vertex = 2;
 
     // coloque aqui o node que deseja saber se esta conectado ao inicial
     int nodeToFind = 4;
@@ -127,10 +127,8 @@ int main () {
     it = find (V.begin(),V.end(),0);
     cout << *it<<endl;
 
-    /*
-    for (it=v[2].begin(); it < v[2].end(); it++)
-        cout << "-->" << *it << endl;
-    */
+    
+    
 
     return 0;
 
